@@ -19,12 +19,19 @@ const loadWeather = () => {
 // temp: 28.99
 // temp_max: 28.99
 // temp_min: 28.99
+// id: 804, main: "Clouds", description: "overcast clouds",
 const displayWeather = (data) => {
-    console.log(data)
+    console.log(data.weather[0].main)
+    const url = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    const imgIcon = document.getElementById('weather-icon');
+    imgIcon.setAttribute('src', url);
+
     const cityName = document.getElementById('city-name')
     cityName.innerText = ` ${data.name},${data.sys.country}`
     const temperature = document.getElementById('temperature')
     temperature.innerText = ` ${data.main.temp}`
+    const weatherInfo = document.getElementById('weather-info')
+    weatherInfo.innerText = ` ${data.weather[0].main}`
     const feelsLike = document.getElementById('feels-like')
     feelsLike.innerText = ` ${data.main.feels_like}`
     const humidity = document.getElementById('humidity')
